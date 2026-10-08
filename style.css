@@ -1,0 +1,772 @@
+/* ============ 基础变量 ============ */
+:root {
+    --ink: #1c2434;
+    --ink-light: #4a5568;
+    --paper: #ffffff;
+    --paper-alt: #f7f6f2;
+    --accent: #8b1e3f;      /* 学术绛红 */
+    --accent-dark: #6b1530;
+    --accent-soft: #f3e8ec;
+    --gold: #b8860b;
+    --line: #e5e0d6;
+    --shadow: 0 8px 30px rgba(28, 36, 52, 0.08);
+    --shadow-lg: 0 16px 50px rgba(28, 36, 52, 0.14);
+    --radius: 12px;
+    --container: 1180px;
+}
+
+/* ============ 重置 ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+    font-family: 'Inter', 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
+
+/* ============ 顶部导航 ============ */
+.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+}
+
+.site-header.scrolled { box-shadow: 0 4px 20px rgba(28,36,52,0.08); }
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.brand { display: flex; align-items: center; gap: 0.8rem; }
+
+.brand-seal {
+    width: 44px; height: 44px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(139,30,63,0.35);
+}
+
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+
+.brand-name { font-size: 1.25rem; font-weight: 700; letter-spacing: 2px; }
+
+.brand-en {
+    font-size: 0.62rem;
+    color: var(--ink-light);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.�ain-nav { display: flex; gap: 1.6rem; }
+
+.nav-link {
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    padding: 0.4rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.25s;
+}
+
+.nav-link:hover, .nav-link.active { color: var(--accent); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+nmenu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; }
+.menu-toggle span {
+    width: 24px; height: 2px; background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+*/ ============ Hero ============ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(139,30,63,0.25), transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(184,134,11,0.15), transparent 50%),
+        linear-gradient(160deg, #16181d 0%, #1c2434 55%, #241a2e 100%);
+    color: #fff;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '构';
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 42rem;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    color: rgba(255,255,255,0.045);
+    pointer-events: none;
+    user-select: none;
+}
+
+.hero-content { position: relative; z-index: 2; padding: 8rem 1.5rem 4rem; }
+
+.hero-subtitle {
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    color: #e8b4c4;
+    margin-bottom: 1.2rem;
+}
+
+.hero-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: 6px;
+    line-height: 1.15;
+}
+
+.hero-title em {
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 10px;
+    font-size: 0.55em;
+    vertical-align: super;
+    margin-left: 0.3rem;
+}
+
+.hero-desc {
+    max-width: 620px;
+    margin: 1.8rem 0 2.4rem;
+    font-size: 1.08rem;
+    color: rgba(255,255,255,0.82);
+}
+
+.�hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(139,30,63,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(139,30,63,0.5); }
+
+.�btn-outline {
+    border: 2px solid rgba(255,255,255,0.6);
+    color: #fff;
+}
+
+.btn-outline:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+.hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+}
+
+.stat { display: flex; flex-direction: column; }
+
+.stat strong {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+}
+
+.stat span { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+*/ =========== 通用区块 ============ */
+.section { padding: 5.5rem 0; }
+.section-alt { background: var(--paper-alt); }
+
+.section-head { text-align: center; margin-bottom: 3rem; }
+
+.section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.6rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 56px; height: 3px;
+    background: var(--accent);
+}
+
+.section-subtitle {
+    color: var(--ink-light);
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+}
+
+/* ============ 期刊简介 ============ */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.�about-text p { margin-bottom: 1.2rem; font-size: 1.02rem; color: var(--ink-light); }
+.about-text strong { color: var(--accent); }
+
+.about-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
+
+.about-badges span {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    padding: 0.45rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.�about-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.about-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+.�about-card dl { display: grid; gap: 0.7rem; }
+
+.about-card dt { font-size: 0.82rem; color: var(--ink-light); }
+.about-card dd { font-size: 0.98rem; font-weight: 600; }
+*/ =========== 论文列表 ============ */
+.paper-filters { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.4rem; }
+
+.filter-btn {
+    padding: 0.5rem 1.4rem;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    transition: all 0.2{
+}
+
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.papers-list { display: grid; gap: 1.2rem; }
+
+.paper-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.8rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: fadeUp 0.4s ease both;
+}
+
+.paper-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.paper-card.hide { display: none; }
+
+.paper-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
+
+.paper-tag {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.paper-date { font-size: 0.82rem; color: var(--ink-light); }
+
+.paper-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.paper-title:hover { color: var(--accent); }
+
+.paper-authors { font-size: 0.9rem; color: var(--ink-light); margin-bottom: 0.7rem; }
+.paper-authors strong { color: var(--ink); font-weight: 600; }
+
+.paper-abstract {
+    font-size: 0.92rem;
+    color: var(--ink-light);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+}
+
+.paper-links { display: flex; gap: 1.2rem; }
+
+.paper-links a {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.paper-links a:hover { border-bottom-color: var(--accent); }
+*/ =========== 期刊目录 ============ */
+.issues-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+.issue-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.issue-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.issue-cover {
+    background: linear-gradient(150deg, var(--accent), #2d1b2f);
+    color: #fff;
+    text-align: center;
+    padding: 2.4rem 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+.issue-info { padding: 1.4rem 1.5rem; }
+
+.issue-info h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+.issue-info p { font-size: 0.85rem; color: var(--ink-light); }
+
+.issue-status {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.78rem;
+    padding: 0.25rem 0.9rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.issue-status:first-of-type { background: #e7f6ec; color: #1e7d46; }
+.issue-status:last-of-type { background: var(--accent-soft); color: var(--accent-dark); }
+/* ============ 投稿指南 ============ */
+.submit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.submit-step {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.submit-step:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.step-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+}
+
+.submit-step h3 { font-size: 1.05rem; margin-bottom: 0.6rem; }
+.submit-step p { font-size: 0.88rem; color: var(--ink-light); }
+
+.submit-note {
+    margin-top: 2.4rem;
+    text-align: center;
+    background: var(--accent-soft);
+    padding: 1rem;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+}
+
+.submit-note a { color: var(--accent); font-weight: 700; }
+.submit-note a:hover { text-decoration: underline; }
+/* ============ 编委嗨�f' ============ */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.team-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.team-avatar {
+    width: 72px; height: 72px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: linear-gradient(150deg, var(--accent), var(--gold));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.team-card h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+.team-card p { font-size: 0.85rem; color: var(--ink-light); }
+*/ =========== 桵脚 ============ */
+.site-footer { background: #16181d; color: #cfd2da; }
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 2.5rem;
+    padding: 3.5rem 1.5rem;
+}
+
+.tooter-brand h3 {
+    font-family: 'Noto Serif SC', serif;
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: 2px;
+}
+
+.footer-brand h3 em { color: var(--gold); font-style: normal; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.8; }
+
+.footer-links h4 {
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a, .footer-links span {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.45rem;
+    color: #9aa0ab;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.tooter-bottom {
+    border-top: 1px solid #2a2d35;
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #7a808c;
+}
+/* ============ 返回项部 ============ */
+.back-top {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.3rem;
+    border: none;
+    box-shadow: 0 8px 24px rgba(139,30,63,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: all 0.3s;
+    z-index: 900;
+}
+
+.back-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-top:hover { background: var(--accent-dark); }
+/* ============ 提交按钮区 ============ */
+.submit-action { text-align: center; margin-top: 1.5rem; }
+*/ =========== 缹窗 ============ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 24, 29, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.26s ease;
+}
+
+.modal-overlay.show { display: flex; opacity: 1; }
+
+.modal-panel {
+    background: var(--paper);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 2rem 2.2rem 2.4rem;
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.3s ease;
+}
+
+.modal-panel.modal-lg { max-width: 680px; }
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    font-size: 1.8rem;
+    line-height: 1;
+    background: none;
+    border: none;
+    color: var(--ink-light);
+    transition: color 0.2s, transform 0.2s;
+}
+
+.�odal-close:hover { color: var(--accent); transform: rotate(90deg); }
+
+.�odal-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.modal-sub { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 1.6rem; }
+/* 论文鯦情 */
+.detail-head {
+    padding-right: 1.5rem;
+    margin-bottom: 1.6rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1.4rem;
+}
+
+.detail-head h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    margin: 0.7rem 0 0.5rem;
+}
+
+.detail-authors { font-size: 0.95em; color: var(--ink-light); }
+.detail-authors strong { color: var(--ink); }
+
+.detail-meta {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    margin-top: 0.4rem;
+}
+
+.detail-section { margin-bottom: 1.5rem; }
+
+.detail-section h4 {
+    font-size: 0.9rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+}
+
+.detail-section p { font-size: 0.95rem; color: var(--ink-light); }
+�Oeyword-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.keyword-tags span {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+}
+
+.detail-actions .btn { font-size: 0.9rem; padding: 0.7rem 1.6rem; }
+*/ =========== 表卖 ============ */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-group { margin-bottom: 1.1rem; }
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.form-group label em { color: var(--accent); font-style: normal; }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--paper);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139, 30, 63, 0.12);
+}
+
+.form-group textarea { resize: vertical; }
+
+.�orm-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    cursor: pointer;
+    margin-bottom: 1.1rem;
+}
+
+.�orm-check input {
+    margin-top: 0.2rem;
+    accent-color: var(--accent);
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+}
+
+.form-error {
+    display: none;
+    background: #fdeaea;
+    color: "c0392b;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.�orm-error.show { display: block; }
+.form-submit { width: 100%; }
+/* ============ 响应式 ============ */
+@media (max-width: 992px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .issues-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .submit-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: var(--paper);
+        flex-direction: column;
+        padding: 1rem 2rem 1.5rem;
+        gap: 0.8rem;
+        border-bottom: 1px solid var(--line);
+        transform: translateY(-120%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 12px 30px rgba(28,36,52,0.1);
+    }
+    .workspace-main.main-nav.open { transform: translateY(0); }
+    .nav-link { font-size: 1.05rem; }
+    .menu-toggle { display: flex; }
+    .hero-title { letter-spacing: 3px; }
+    .hero-stats { gap: 1.6rem; }
+    .hero::before { font-size: 20rem; right: -30px; }
+
+    .section { padding: 3.5rem 0; }
+    .section-title { font-size: 1.7rem; }
+    .submit-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; padding: 2.5rem 1.6rem; }
+    .paper-card { padding: 1.2rem 1.3rem; }
+    .paper-title { font-size: 1.1rem; }
+}
